@@ -26,3 +26,5 @@ const Game = db.define('Game', {
     type: DataTypes.STRING,
   },
 });
+
+module.exports = Game;
