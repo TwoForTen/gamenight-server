@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Game.belongsToMany(models.Genre, {
         through: models.GameGenre,
-        foreignKey: 'game_id',
+        foreignKey: 'gameId',
         constraints: false,
         as: 'genres',
       });

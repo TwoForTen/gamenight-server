@@ -6,14 +6,14 @@ module.exports = {
       'GameGenres',
       [
         {
-          game_id: 1,
-          genre_id: 1,
+          gameId: 1,
+          genreId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          game_id: 1,
-          genre_id: 2,
+          gameId: 1,
+          genreId: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -23,11 +23,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete('GameGenres', null, {});
   },
 };

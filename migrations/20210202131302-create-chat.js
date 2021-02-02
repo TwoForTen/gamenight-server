@@ -1,18 +1,19 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('GameGenres', {
+    await queryInterface.createTable('Chats', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      gameId: {
-        type: Sequelize.INTEGER,
+      message: {
+        type: Sequelize.TEXT,
       },
-      genreId: {
+      gamenightId: {
         type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,
@@ -25,6 +26,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('GameGenres');
+    await queryInterface.dropTable('Chats');
   },
 };

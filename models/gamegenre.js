@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   GameGenre.init(
     {
-      game_id: DataTypes.INTEGER,
-      genre_id: DataTypes.INTEGER,
+      gameId: DataTypes.INTEGER,
+      genreId: DataTypes.INTEGER,
     },
     {
       sequelize,
