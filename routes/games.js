@@ -32,6 +32,7 @@ router.get('/gamenights', async (req, res) => {
       include: [
         {
           model: Participant,
+          include: [{ model: Game, as: 'games' }],
           as: 'participants',
         },
         {
