@@ -14,6 +14,11 @@ module.exports = {
         createdAt: date,
         updatedAt: date,
       },
+      {
+        name: 'Wargame',
+        createdAt: date,
+        updatedAt: date,
+      },
     ];
     await queryInterface.bulkInsert('Genres', data, {});
   },

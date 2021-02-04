@@ -12,6 +12,12 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          participantId: 1,
+          gameId: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
           participantId: 3,
           gameId: 1,
           createdAt: new Date(),

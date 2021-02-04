@@ -14,6 +14,12 @@ app.use(express.json());
 const gameRoutes = require('./routes/games');
 app.use('/api', gameRoutes);
 
+const placeRoutes = require('./routes/places');
+app.use('/api', placeRoutes);
+
+const gamenightRoutes = require('./routes/gamenights');
+app.use('/api', gamenightRoutes);
+
 db.sequelize.sync().then(() => {
   app.listen(port, () => console.log(`server running at port ${port}`));
 });
