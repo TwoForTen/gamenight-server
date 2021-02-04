@@ -6,21 +6,21 @@ module.exports = {
     const data = [
       {
         username: 'ColdCoffin',
+        gamenightId: 1,
         createdAt: date,
         updatedAt: date,
-        gamenightId: 1,
       },
       {
         username: 'TwoForTen',
+        gamenightId: 2,
         createdAt: date,
         updatedAt: date,
-        gamenightId: 2,
       },
       {
         username: 'i_perica',
+        gamenightId: 1,
         createdAt: date,
         updatedAt: date,
-        gamenightId: 1,
       },
     ];
 

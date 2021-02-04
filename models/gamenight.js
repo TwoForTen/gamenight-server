@@ -33,8 +33,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       url: DataTypes.STRING,
       proposedBy: DataTypes.STRING,
-      date: DataTypes.STRING,
-      time: DataTypes.STRING,
+      date: DataTypes.DATE,
+      time: DataTypes.DATE,
       placeId: DataTypes.INTEGER,
     },
     {
