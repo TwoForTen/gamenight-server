@@ -14,6 +14,10 @@ module.exports = {
       gamenightId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
+        references: {
+          model: 'Gamenights',
+          key: 'id',
+        },
       },
       createdAt: {
         allowNull: false,

@@ -11,10 +11,16 @@ module.exports = (sequelize, DataTypes) => {
       Gamenight.hasMany(models.Participant, {
         foreignKey: 'gamenightId',
         as: 'participants',
+        foreignKeyConstraint: true,
+        onDelete: 'CASCADE',
+        hooks: true,
       });
       Gamenight.hasMany(models.Chat, {
         foreignKey: 'gamenightId',
         as: 'chat',
+        foreignKeyConstraint: true,
+        onDelete: 'CASCADE',
+        hooks: true,
       });
       Gamenight.hasOne(models.Place, {
         foreignKey: 'id',

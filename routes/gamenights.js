@@ -8,6 +8,7 @@ const {
   Participant,
   Chat,
   Place,
+  ParticipantGame,
 } = require('../models');
 
 router.get('/gamenights', async (req, res) => {
@@ -36,6 +37,47 @@ router.get('/gamenights', async (req, res) => {
       ],
     });
     res.json(gamenights);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+router.post('/gamenight', async (req, res) => {
+  const { url, proposedBy, date, time, placeId, games } = req.body;
+
+  try {
+    const gamenight = await Gamenight.create({
+      url,
+      proposedBy,
+      date,
+      time,
+      placeId,
+    });
+    const participant = await Participant.create({
+      username: proposedBy,
+      gamenightId: gamenight.id,
+    });
+    games.forEach(async (game) => {
+      await ParticipantGame.create({
+        participantId: participant.id,
+        gameId: game.id,
+      });
+    });
+    res.sendStatus(200);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+router.delete('/gamenight/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Gamenight.destroy({
+      where: {
+        id,
+      },
+    });
+    res.sendStatus(200);
   } catch (err) {
     res.status(400).send(err);
   }
