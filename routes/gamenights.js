@@ -42,6 +42,43 @@ router.get('/gamenights', async (req, res) => {
   }
 });
 
+router.get('/gamenight/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const gamenight = await Gamenight.findOne({
+      where: {
+        id,
+      },
+      include: [
+        {
+          model: Participant,
+          include: [
+            {
+              model: Game,
+              as: 'games',
+              include: [{ model: Genre, as: 'genres' }],
+            },
+          ],
+          as: 'participants',
+        },
+        {
+          model: Place,
+          as: 'place',
+        },
+        {
+          model: Chat,
+          as: 'chat',
+        },
+      ],
+    });
+    res.json(gamenight);
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+});
+
 router.post('/gamenight', async (req, res) => {
   const { url, proposedBy, date, time, placeId, games } = req.body;
 
@@ -79,6 +116,27 @@ router.delete('/gamenight/:id', async (req, res) => {
     });
     res.sendStatus(200);
   } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+router.post('/gamenight/join/:id', async (req, res) => {
+  const { username, games } = req.body;
+  const { id } = req.params;
+  try {
+    const participant = await Participant.create({
+      username,
+      gamenightId: id,
+    });
+    await games.forEach(async (game) => {
+      await ParticipantGame.create({
+        participantId: participant.id,
+        gameId: game.id,
+      });
+    });
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
     res.status(400).send(err);
   }
 });
